@@ -1,8 +1,8 @@
+import org.junit.Assert;
+import org.junit.Test;
 import overridetech.jdbc.jpa.model.User;
 import overridetech.jdbc.jpa.service.UserService;
 import overridetech.jdbc.jpa.service.UserServiceImpl;
-import org.junit.Assert;
-import org.junit.Test;
 
 import java.util.List;
 
