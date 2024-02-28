@@ -1,23 +1,17 @@
 package overridetech.jdbc.jpa.service;
 
-import overridetech.jdbc.jpa.dao.UserDaoJDBCImpl;
+import overridetech.jdbc.jpa.dao.UserDaoHibernateImpl;
 import overridetech.jdbc.jpa.model.User;
 import overridetech.jdbc.jpa.util.Util;
 
-import java.sql.Connection;
 import java.util.List;
-import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
-    private final UserDaoJDBCImpl userDao;
+    private final UserDaoHibernateImpl userDao;
 
     public UserServiceImpl() {
         Util util = new Util();
-        Optional<Connection> optionalConnection = util.getOptionalConnection();
-        if (optionalConnection.isEmpty()) {
-            throw new UserServiceException("Connection is null");
-        }
-        userDao = new UserDaoJDBCImpl(optionalConnection.get());
+        userDao = new UserDaoHibernateImpl(util.getSessionFactory());
     }
 
     public void createUsersTable() {
